@@ -23,7 +23,7 @@ public class AdminServiceController {
     ServiceServiceImpl serviceService;
 
     UploadFile uploadFile = new UploadFile();
-    @GetMapping(value = "/dich-vu")
+    @GetMapping(value = "/dich-vu") //
     public ModelAndView index(String msg){
         ModelAndView mv = new ModelAndView("admin/service");
 
