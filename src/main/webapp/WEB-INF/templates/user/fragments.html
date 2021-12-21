@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:fragment="html_head">
+    <meta charset="UTF-8">
+    <title>Tiệc cưới</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/user/assets/css/main_style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/user/assets/css/Animation.css}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick-theme.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.0/slick/slick.min.js"></script>
+    <script th:src="@{/user/assets/js/main_js.js}"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script>
+        $("#single_item").slick({
+            dots: true
+        });
+        $("#testimonials").slick({
+            dots: false
+        });
+    </script>
+    <script>
+        window.onscroll = function () {
+            scrollFunction(),
+                backTop()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 35 || document.documentElement.scrollTop > 35) {
+                $(document).ready(function () {
+                    $(".top_bar").hide('slow');
+                });
+
+            } else {
+                $(document).ready(function () {
+                    $(".top_bar").show();
+                });
+            }
+        }
+
+        $(function () {
+            $("#tabs").tabs();
+        });
+
+        $(document).ready(function () {
+            $(".search__item").click(function () {
+                $(".input_search").toggle("slow");
+            });
+        })
+    </script>
+    <style>
+        ::placeholder {
+            color: white;
+
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <!-- Header -->
+    <header th:fragment="header_menu" class="header">
+        <!-- Top Bar -->
+        <div class="top_bar">
+            <div class="bar__info">
+                <div class="phone">+84 788 9 036</div>
+                <div class="social">
+                    <ul class="social_list">
+                        <li class="social_list_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="social_list_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="social_list_item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div th:if="${session.user}" class="bar__user">
+
+                <a th:if="${session.user.image}" th:href="@{/user/thong-tin-ca-nhan(username=${session.user.userName})}"> <img style="border-radius: 100px;margin-right: 10px"  height="30px" width="30px" th:src="@{'/user/assets/images/'+${session.user.image}}"></a>
+                <a th:unless="${session.user.image}" th:href="@{/user/thong-tin-ca-nhan(username=${session.user.userName})}"> <img style="border-radius: 100px;margin-right: 10px"  height="30px" width="30px" src="https://st.quantrimang.com/photos/image/072015/22/avatar.jpg"></a>
+                <div class="bar__user-login"><a th:href="@{/user/thong-tin-ca-nhan(username=${session.user.userName})}" th:text="${session.user.fullName}"></a></div>
+                <div class="bar__user-regis"><a href="/user/dang-xuat">Đăng xuất</a></div>
+            </div>
+            <div th:unless="${session.user}" class="bar__user">
+                <div class="bar__user-login"><a href="/user/dang-nhap">Đăng nhập</a></div>
+                <div class="bar__user-regis"><a href="/user/dang-ki">Đăng kí</a></div>
+            </div>
+        </div>
+
+        <div class="main_nav">
+            <div class="main_nav__logo"><a> MELISA Center </a></div>
+            <div class="main_nav__menu">
+                <ul class="main_nav__list">
+                    <li class="main_nav__item"><a href="/trang-chu">TRANG CHỦ</a></li>
+                    <li class="main_nav__item"><a href="/sanh-cuoi">SẢNH CƯỚI</a></li>
+                    <li class="main_nav__item"><a href="/dich-vu-va-uu-dai">DỊCH VỤ</a></li>
+                    <li class="main_nav__item"><a href="danh-sach-menu-thuc-an">MEMU THỨC ĂN</a></li>
+                    <li class="main_nav__item"><a href="/lien-he">LIÊN HỆ</a></li>
+                </ul>
+            </div>
+            <div class="main_nav__search">
+                <form action="/tim-kiem" method="get"><input name="keysearch" class="input_search" type="text"></form>
+                <div class="search__item"><i class="fas fa-search"></i></div>
+            </div>
+        </div>
+    </header>
+    <footer th:fragment="footer" class="footer">
+        MELISA CENTER 2021 - HOTLINE:+84 788 9 036
+    </footer>
+
+</div>
+
+</body>
+
+
+
+</html>

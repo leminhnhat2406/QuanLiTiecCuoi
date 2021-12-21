@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="user/fragments :: html_head">
+
+</head>
+<body>
+<div id="wrapper">
+  <!-- Header -->
+  <header th:replace="user/fragments :: header_menu" class="header">
+
+  </header>
+  <div class="main">
+    <div class="blog" style="margin-top: 70px">
+      <div class="box blog__box">
+        <div class="blog__list">
+          <th:block th:each="service : ${list.content}">
+            <div class="blog_post">
+              <div class="blog_post_image">
+
+                <img class="zoom_img" th:src="@{'/user/assets/images/'+${service.image}}" alt="">
+
+              </div>
+              <div class="blog_post_meta">
+
+              </div>
+              <div class="blog_post_title"><a href="#" th:text="${service.name}"></a>
+              </div>
+              <div class="blog_post_text"><p th:utext="${service.description}">.</p>
+              </div>
+              <div class="blog_post_link"><a th:href="@{/chi-tiet-dich-vu(id=${service.id})}">Xem tiếp...</a></div>
+            </div>
+          </th:block>
+
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer th:replace="user/fragments :: footer" class="footer">
+  </footer>
+
+</div>
+
+</body>
+<script src="styles/js/main_js.js"></script>
+</html>

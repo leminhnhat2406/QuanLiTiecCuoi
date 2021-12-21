@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="user/fragments :: html_head">
+  <meta charset="UTF-8">
+  <title>Home</title>
+
+</head>
+<body>
+<div id="wrapper">
+  <header th:replace="user/fragments :: header_menu" class="header">
+  </header>
+  <div class="main">
+    <!--        Intro-->
+    <div class="main_intro" >
+      <h2>NHỮNG SẢNH CƯỚI TỐT NHẤT </h2>
+      <div class="main_intro__items">
+        <th:block th:each="weddinghall : ${listWeddingHall}">
+          <div class="intro_item">
+            <div class="intro_item__backgroud" >
+              <img width="100%" th:src="@{'user/assets/images/'+${weddinghall.image}}">
+            </div>
+            <div class="intro_item__content">
+              <div class="intro_text">
+                <h1 th:text="${weddinghall.name}"></h1>
+                <div class="intro_price" th:text="'Giá: ' +${weddinghall.cost}+' đ'"></div>
+                <div class="rating rating_4">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+              <div class="button intro_button">
+                <div class="button_bcg"></div>
+                <a th:href="@{/chi-tiet-sanh-cuoi(id=${weddinghall.id})}">Xem ngay<span></span><span></span><span></span></a></div>
+            </div>
+          </div>
+        </th:block>
+
+      </div>
+    </div>
+    <!--        Offers-->
+    <div class="main_offers">
+      <div class="box main_offers__box">
+        <h2 class="offers_title">CÁC DỊCH VỤ CỦA NHÀ HÀNG HỖ TRỢ</h2>
+        <div class="offers_items">
+          <th:block th:each="serviceL : ${listService}">
+            <div class="offers_item">
+              <div class="offers_image">
+                <div class="offers_image_background">
+                  <img width="100%" th:src="@{'user/assets/images/'+${serviceL.image}}">
+                </div>
+              </div>
+              <div class="offers_content">
+                <div class="offers_price"><span th:text="${serviceL.cost}"></span></div>
+                <div class="rating rating_4 offers_rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="offers_text" th:utext="${serviceL.description}"></p>
+                <div class="offers_icons">
+                  <ul class="offers_icons_list">
+                    <li class="offers_icons_item"><img th:src="@{/user/assets/images/post.png}" alt=""></li>
+                    <li class="offers_icons_item"><img th:src="@{/user/assets/images/compass.png}"  alt=""></li>
+                    <li class="offers_icons_item"><img th:src="@{/user/assets/images/bicycle.png}" alt=""></li>
+                    <li class="offers_icons_item"><img th:src="@{/user/assets/images/sailboat.png}"  alt=""></li>
+                  </ul>
+                </div>
+                <div class="offers_link"><a th:href="@{/chi-tiet-dich-vu(id=${serviceL.id})}">Đọc thêm</a></div>
+              </div>
+            </div>
+          </th:block>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="main_testimonials">
+      <div class="box main_testimonials__box">
+        <h2>CÁC MENU THỨC ĂN</h2>
+        <div id="testimonials" data-slick='{"slidesToShow": 3, "slidesToScroll": 1}'>
+          <th:block th:each="menufood : ${listMenuFood}">
+            <a th:href="@{/chi-tiet-menu-thuc-an(id=${menufood.id})}">
+              <div class="test_item">
+                <div class="test_item_box">
+                  <div class="test_image"><img  th:src="@{'/user/assets/images/'+${menufood.image}}"  alt="">
+                  </div>
+                  <div class="test_icon"><img  src="user/assets/images/island_t.png"   alt=""></div>
+                </div>
+              </div>
+            </a>
+          </th:block>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer th:replace="user/fragments :: footer" class="footer">
+  </footer>
+
+</div>
+
+</body>
+<script src="styles/js/main_js.js"></script>
+
+<script>
+
+  $("#single_item").slick({
+    dots: true
+  });
+  $("#testimonials").slick({
+    dots: false
+  });
+</script>
+
+</html>

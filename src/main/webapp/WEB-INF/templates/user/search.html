@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="user/fragments :: html_head">
+
+</head>
+<body>
+<div id="wrapper">
+    <!-- Header -->
+    <header th:replace="user/fragments :: header_menu" class="header">
+
+    </header>
+    <div class="main">
+        <div class="offers" style="margin-top: 50px">
+            <div class="box offers__box1">
+                <div class="offers_sorting_container">
+                    <ul class="offers_sorting">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="box offers__box2">
+                <div th:if="${list.totalPages>0}" class="offers_grid" style="position: relative;">
+                    <th:block th:each="weddinghall : ${list.content}">
+                        <div style="margin-top: 25px" class="offers_item2" >
+                            <div class="offers_image f_image">
+                                <!-- Image by https://unsplash.com/@kensuarez -->
+                                <div class="offers_image_background"
+                                ><img height="300px" width="400px" th:src="@{'/user/assets/images/'+${weddinghall.image}}"></div>
+                                <div class="offers_name"><a href="#" th:text="${weddinghall.name}" ></a></div>
+                            </div>
+                            <div class="offers_content">
+                                <div class="offers_price" th:text="${weddinghall.name}"></div>
+                                <div class="rating rating_4 offers_rating" data-rating="4">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="offers_text" th:utext="${weddinghall.description}"></p>
+                                <div class="offers_icons">
+                                    <ul class="offers_icons_list">
+                                        <li class="offers_icons_item"><img src="styles/images/post.png" alt=""></li>
+                                        <li class="offers_icons_item"><img src="styles/images/compass.png" alt=""></li>
+                                        <li class="offers_icons_item"><img src="styles/images/bicycle.png" alt=""></li>
+                                        <li class="offers_icons_item"><img src="styles/images/sailboat.png" alt=""></li>
+                                    </ul>
+                                </div>
+                                <div class="button book_button">
+                                </div>
+                                <div class="offer_reviews">
+                                    <div class="offer_reviews_content">
+                                        <div class="offer_reviews_title">very good</div>
+                                        <div class="offer_reviews_subtitle" th:text="${weddinghall.view +' lượt xem'}"> </div>
+                                    </div>
+                                    <div class="offer_reviews_rating" style="text-align: center" th:text="${weddinghall.view}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+
+                </div>
+                <div th:unless="${list.totalPages>0}" class="offers_grid">
+                    <p style="color: red;font-weight: bold;font-size: large">Không tìm thấy sảnh cưới nào</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="user/fragments :: footer" class="footer">
+
+    </footer>
+</div>
+</body>
+
+</html>

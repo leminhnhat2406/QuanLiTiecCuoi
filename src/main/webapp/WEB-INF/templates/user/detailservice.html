@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="user/fragments :: html_head">
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/user/assets/styles/tooltipster/dist/css/tooltipster.bundle.min.css}" />
+  <script type="text/javascript"  th:src="@{/user/assets/styles/tooltipster/dist/js/tooltipster.bundle.min.js}" ></script>
+  <script>
+    window.onscroll = function () {
+      scrollFunction()
+    };
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 35 || document.documentElement.scrollTop > 35) {
+        $(document).ready(function () {
+          $(".top_bar").hide();
+        });
+
+      } else {
+        $(document).ready(function () {
+          $(".top_bar").show();
+        });
+      }
+    }
+
+    $(document).ready(function () {
+      $('.bar_1').animate({
+        width: "70%"
+      });
+      $('.bar_2').animate({
+        width: "40%"
+      });
+      $('.bar_3').animate({
+        width: "43%"
+      });
+      $('.bar_4').animate({
+        width: "65%"
+      });
+    });
+    $(document).ready(function() {
+      $('.tooltip').tooltipster();
+    });
+  </script>
+
+
+</head>
+<body>
+<div id="wrapper">
+  <!-- Header -->
+  <header th:replace="user/fragments :: header_menu" class="header">
+    <!-- Top Bar -->
+  </header>
+  <div class="main">
+    <div class="about" style="margin-top: 70px">
+      <div class="box about__box">
+        <div th:if="${service.image}">
+          <div  class="about__image"><img style="width: 600px;height: 350px" th:src="@{'/user/assets/images/'+${service.image}}" alt=""></div>
+
+        </div>
+        <div th:unless="${service.image}">
+          <div class="about__image" style="position: relative">
+            <img src="https://st.quantrimang.com/photos/image/072015/22/avatar.jpg" alt="">
+
+          </div>
+
+        </div>
+        <script>
+          $("#upfile1").click(function () {
+            $("#file1").trigger('click');
+          });
+        </script>
+        <div class="about__content">
+          <div class="about__title"><span th:text="${service.name}"></span></div>
+          <p class="about__text" style="font-weight: bold">Mô tả: <span th:utext="${service.description}"></span></p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <footer th:replace="user/fragments :: footer" class="footer">
+  </footer>
+</div>
+</body>
+
+
+</html>
